@@ -28,8 +28,8 @@ FOR %%x in (%*) do (
 	echo Error message in !PF!: 1>&2
 	type "!EL!" 1>&2
 	echo. 1>&2
-	echo Common problems #1: Incorrect Perl path or missing Date::Calc library from Perl 1>&2
-	echo #2: XLS rather than CSV format or CSV with tabs as the delimiter between cols 1>&2
+	echo Common problem #1 Incorrect Perl path or missing Date::Calc library from Perl 1>&2
+	echo #2 XLS rather than CSV format or CSV with tabs as the delimiter between cols 1>&2
 	REM Feel free to REM the 3 echo statements immediately above if you don't want the same exact text each time
 	set /A failures+=1
    )
