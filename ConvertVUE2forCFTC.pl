@@ -33,7 +33,7 @@ my $coms = (<STDIN> =~ tr/,//);
 if ($coms == 13) { $ver = 1; }
 elsif ($coms == 9) { $ver = 2; }
 else { croak("Unrecognized VUE CSV format. This script written primarily for 'default' format in VUE 2.1.3"); }
-#no switch/case in Perl by default?  who knew?
+# no switch/case in Perl by default?  who knew?
 
 # work on the rest of the lines.
 while ($line = <STDIN>) {
