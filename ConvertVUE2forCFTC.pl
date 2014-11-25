@@ -19,7 +19,7 @@ use strict;
 use warnings;
 
 use Date::Calc qw(Add_Delta_YMDHMS);
-use Carp qw(croak); # You could alternatively leave off this line and change all "croak"s to "die" and "carps" to "warn" - but less debugging information is available then
+use Carp qw(croak carp); # You could alternatively leave off this line and change all "croak"s to "die" and "carps" to "warn" - but less debugging information is available then
 
 # set up warnings: non-critical error messages to be output at the end of the file process.
 my @WARNINGS;
