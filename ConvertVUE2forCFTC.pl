@@ -2,6 +2,7 @@
 
 # feed this the name of a VUE csv file and it will reformat it.  The 
 # Date::Calc module is used to convert UTC to PST time.
+# Data::Types module is used to check if milliseconds are included in the incoming data
 # Steve Lindley, 25 Mar 2008.
 # Modified on 12/15/11 by CJM to also output codespace for the new Detections_all table format
 # Modified on 12/27/11 by CJM to no longer output sync and bin
@@ -18,22 +19,31 @@
 use strict;
 use warnings;
 
+use Data::Types qw(to_decimal to_int);
 use Date::Calc qw(Add_Delta_YMDHMS);
 use Carp qw(croak carp); # You could alternatively leave off this line and change all "croak"s to "die" and "carps" to "warn" - but less debugging information is available then
+
+my ($arg, $noMS, $yesMS);
+$noMS = 0; $yesMS = 0;
+
+foreach $arg (@ARGV) {
+  if ($arg eq "/noMS") { $noMS = 1; }
+  elsif ($arg eq "/yesMS") { $yesMS = 1; }
+}
 
 # set up warnings: non-critical error messages to be output at the end of the file process.
 my @WARNINGS;
 $SIG{__WARN__} = sub { push @WARNINGS, shift };
 
 # with "strict" we need to declare all variables prior to use
-my ($line, $junk, $year, $mon, $day, $hh, $mm, $ss, $MMDDYYYY, $HHMMSS, $outdate, $sernumstring, $sernum, $codespacetag, $tech, $spce, $tagcode, $codespace, $data1, $units1, $data2, $units2, $outstring, $datestring, $ver);
+my ($line, $junk, $year, $mon, $day, $hh, $mm, $ss, $MMDDYYYY, $HHMM, $HHMMSS, $outdate, $sernumstring, $sernum, $codespacetag, $tech, $spce, $tagcode, $codespace, $data1, $units1, $data2, $units2, $outstring, $datestring, $ver);
 
 # read in header line, look at number of commas to decide what the format is. For another day: handle VUE 1.0 and/or handle VUE 2.0 sans header.
 my $coms = (<STDIN> =~ tr/,//);
 if ($coms == 13) { $ver = 1; }
 elsif ($coms == 9) { $ver = 2; }
 else { croak("Unrecognized VUE CSV format. This script written primarily for 'default' format in VUE 2.1.3"); }
-# no switch/case in Perl by default?  who knew?
+#no switch/case in Perl by default?  who knew?
 
 # work on the rest of the lines.
 while ($line = <STDIN>) {
@@ -42,53 +52,63 @@ while ($line = <STDIN>) {
 
   # BLOCK: Process the date and time, same for CSV1 and 2
   $datestring = $fields[0];
-  ($year, $mon, $day, $hh, $mm, $ss) = split(/[:\-,\s\/]/, $datestring) or croak("ERROR: unrecognized Date-Time format in $datestring");
-  if ($day > 31) { #likely MM/DD/YYYY instead of YYYY-MM-DD
-	$junk = $year; $year = $day; $day = $mon; $mon = $junk;
-  }
-  # Opening in excel and re-saving can trim off the seconds field. You probably wouldn't want this data, but that's a personal call.
-  if (!$hh) {$hh="00";} if (!$mm) {$mm="00";} if (!$ss) {$ss="00"; carp("WARNING: date incomplete: $datestring"); }
-  # Date-time is UTC, convert to PST 
-  ($year, $mon, $day, $hh, $mm, $ss) = Add_Delta_YMDHMS($year, $mon, $day, $hh, $mm, $ss, 0,0,0,-8,0,0) or croak("ERROR $!: $year, $mon, $day, $hh, $mm, $ss"); # consider carp/warn() here
-  # Format the date one way MS Access and SQL SERVER like it.
-  $MMDDYYYY = join("/", &pad($mon), &pad($day), $year);
-  $HHMMSS = join(":", &pad($hh), &pad($mm), &pad($ss));
-  $outdate = join(" ", $MMDDYYYY, $HHMMSS);
+  if ($datestring) {
+	($year, $mon, $day, $hh, $mm, $ss) = split(/[:\-,\s\/]/, $datestring) or croak("ERROR: unrecognized Date-Time format in $datestring");
+	if ($day > 31) { #likely MM/DD/YYYY instead of YYYY-MM-DD
+	  $junk = $year; $year = $day; $day = $mon; $mon = $junk;
+  	}
+	# Opening in excel and re-saving can trim off the seconds field. You probably wouldn't want this data, but that's a personal call.
+	if (!$hh) {$hh="00";} if (!$mm) {$mm="00";} if (!$ss) {$ss="00.0"; carp("WARNING: date incomplete: $datestring"); }
+	# Date-time is UTC, convert to PST 
+	($year, $mon, $day, $hh, $mm, $junk) = Add_Delta_YMDHMS($year, $mon, $day, $hh, $mm, $ss, 0,0,0,-8,0,00.0) or croak("ERROR $!: $year, $mon, $day, $hh, $mm, $ss"); 
+	# consider carp/warn() above
+	# Format the date one way MS Access and SQL SERVER like it.
+	$MMDDYYYY = join("/", &pad($mon), &pad($day), $year);
+	$HHMM = join(":", &pad($hh), &pad($mm));
+	if ($noMS) { $junk = to_int($ss); $HHMMSS = join(":", $HHMM, &pad($junk)); }
+	elsif ($yesMS) { $HHMMSS = join(":", $HHMM, &padf($ss)); }
+	else {
+	  $junk = to_int($ss);
+	  if ($ss == $junk) { $HHMMSS = join(":", $HHMM, &pad($junk));}
+	  else {$HHMMSS = join(":", $HHMM, &padf($ss));}
+  	}
+  	$outdate = join(" ", $MMDDYYYY, $HHMMSS);
 
-  # BLOCK: Process the serial number: drop "VR2W" part from CSV2 - we don't need that
-  if ($ver == 2) {
-	$sernumstring = $fields[1];
-	(undef, $sernum) = split(/-/, $sernumstring);
-  } else { #ver1
-	$sernum = $fields[10];
-  }
+	# BLOCK: Process the serial number: drop "VR2W" part from CSV2 - we don't need that
+	if ($ver == 2) {
+	  $sernumstring = $fields[1];
+	  (undef, $sernum) = split(/-/, $sernumstring);
+	} else { #ver1
+	  $sernum = $fields[10];
+	}
 
-  # BLOCK: Process the codespace and tag by splitting it apart and then re-joining KHz (A69) with the codespace ID (e.g. 1303)
-  if ($ver == 2) {
-	$codespacetag = $fields[2];
-	($tech, $spce, $tagcode) = split(/-/, $codespacetag);
-	$codespace = join("-",$tech,$spce);
-  } else {
-	$codespace = $fields[1];
-	$tagcode = $fields[2];
-  }
+	# BLOCK: Process the codespace and tag by splitting it apart and then re-joining KHz (A69) with the codespace ID (e.g. 1303)
+	if ($ver == 2) {
+	  $codespacetag = $fields[2];
+	  ($tech, $spce, $tagcode) = split(/-/, $codespacetag);
+	  $codespace = join("-",$tech,$spce);
+	} else {
+	  $codespace = $fields[1];
+	  $tagcode = $fields[2];
+	}
 
   # BLOCK: Process data fields for sensor data (pressure, temp, acceler)
-  if ($ver == 2) {
-	$data1 = $fields[5];
-	$units1 = $fields[6];
-	# Based on VEMCO e-mail exchange the other sensor should have a different timestamp, I'm not sure why it differed in the era of VUE 1
-	$data2 = '';
-	$units2 = '';
-  } else {
-	$data1 = $fields[3];
-	$units1 = $fields[4];
-	$data2 = $fields[5];
-	$units2 = $fields[6];
+	if ($ver == 2) {
+	  $data1 = $fields[5];
+	  $units1 = $fields[6];
+	  # Based on VEMCO e-mail exchange the other sensor should have a different timestamp, I'm not sure why it differed in the era of VUE 1
+	  $data2 = '';
+	  $units2 = '';
+	} else {
+	  $data1 = $fields[3];
+	  $units1 = $fields[4];
+	  $data2 = $fields[5];
+	  $units2 = $fields[6];
+	}
+	# output the line to standard output, which is intercepted by the DOS .BAT file
+	$outstring = join(",",($tagcode,$codespace,$outdate,$sernum,$data1,$units1,$data2,$units2));
+	print "$outstring\n";
   }
-  # output the line to standard output, which is intercepted by the DOS .BAT file
-  $outstring = join(",",($tagcode,$codespace,$outdate,$sernum,$data1,$units1,$data2,$units2));
-  print "$outstring\n";
 }
 
 # Process any warnings after the file has been read in completely. An error/croak would have terminated the processing of the file immediately.
@@ -106,3 +126,14 @@ sub pad {
   sprintf("%02d", $_[0]);
 }
 
+sub padf {
+  sprintf("%06.03f", $_[0]);
+}
+
+sub padg {
+  sprintf("%02f", $_[0]);
+}
+
+#sub Add_Delta_YMDH {
+#  my($year, $mon, $day, $hh, $mm, $ssms, $dy, $dM, $dd, $dh, $dm, $0,0,0,-8,0,00.0)
+#}

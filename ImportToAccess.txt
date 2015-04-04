@@ -1,4 +1,4 @@
-Documentation adapted from Arnold Amman's instructions provided for VUE 1.8/CSV 1.0
+Documentation adapted from Arnold Amman's Instructions for VUE 1.8/CSV 1.0
 
 SECTION 1 - VUE 2+ (2.1.3 tested):
 
@@ -16,8 +16,8 @@ In VUE
    Type a "\" followed by a database name, e.g. "\drift-corrected" and press "Enter"
 5. Change the output location for the individual drift-corrected VRLs
    FILE -> "Options" button (not in the drop-down menu) -> "Offload" tab -> "Change" button
-   Press "Control-V" "Enter" to select the subdirectory (note: you may have to manually navigate here this time...)
-   While you're here: click the "Export" tab within the options. Make sure the bubble for "Default Version" is selected (note, the CSV output for VUE 1 is now also supported)
+   Press "Control-V" "Enter" to select the subdirectory
+   While you're here: click the "Export" tab within the options. Make sure the bubble for "Default Version" is selected
    Click "OK"
 6. Import the non-drift-corrected VRLs and drift correct
    FILE -> "Tools" -> VRL File Editor
@@ -42,29 +42,53 @@ In VUE
 SECTION 2 - PERL/MS-DOS:
 
 1. Perl installation check prior to first use
-   Make sure you have Perl and appropriate modules installed on your computer
-   This script needs to have a Perl modules Date::Calc and Carp installed on the machine to work as intended using Perl.
-   To install these and other Perl modules (once Perl itself is installed):
-   Run "Perl (command line)" (if available) or windows "Command Prompt" and type "ppm" to start the Perl Package Manager.
-      If the GUI version of PPM is loaded
-         Go to View and select all packages
-         Scroll down to the needed module
-         Select then right click to mark for install
-         Go to the green arrow button on top to begin the install from the web
-      If the text-based command-line version of ppm is loaded instead of the GUI, it seems rather useless
-         Type "exit" to drop back to the perl command line and then type "install Date::Calc Carp"
+   To get to a DOS Command Prompt aka "cmd.exe" in the instructions to follow
+      Windows XP/Vista: Start->Run Type "cmd.exe"<enter>
+      Windows 7/8/8.1/10: Press the Windows Key, type "cmd", click on the entry
+
+   A) Choose a Perl installation online (e.g. Strawberry Perl, ActiveState Perl, both available as external links from http://www.perl.org/get.html), download and install it according to the relevant instructions
+   B) Recommended: Check and/or set your Windows %Path% environment variable to look for the Perl program directory
+      Note: you can skip this step if you adjust the EX environmental variable within ConvertVUE2forCFTC.bat as indicated
+      From cmd.exe type "echo %PATH%"<enter>
+      If the %PATH% output doesn't include a perl bin directory (e.g. D:\Programs\strawberry\perl\bin), you'll need to add it to your Environment variables
+         If you wish to add capability to run VUE-to-CFTC for just a single login account on your computer
+            From cmd.exe type '"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables' (include "s, but not 's)
+            In the top group (User variables for <username>), Edit "Path" or click "New..." if "Path" not present.
+               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *)
+         If you wish to add capability to run VUE-to-CFTC for all users on your computer
+            From cmd.exe type
+               Windows 7-10: "control sysdm.cpl,,3"<enter>
+               - OR -
+               Any Windows: "rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl,,3"<enter>
+            Type a username/password for a user with ADMINISTRATOR level access if prompted
+            Click "Environment Variables"
+            In the System variables (bottom) section, Edit "Path" or click "New..." if "Path" not present
+               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *)
+            Skip C; Resume with D
+* If there are other values present, please seperate existing entries from this entry with a ";"
+     e.g. "D:\Program\strawberry\perl\bin;C:\windows;C:\windows\system32"
+
+   C) Explicitly specify perl paths every time you run perl or a perl script (not recommended, use B instead)
+      Type e.g. "D:\Programs\strawberry\perl\bin\perl.exe" instead of simply "perl" in any of the following commands. You will also need to edit ConvertVUE2forCFTC.bat
+      File edits required (in a plain-text editor, e.g. Notepad) prior to the first use:
+         Change the 2nd line of the .bat file (the "SET EX=" line) to reflect your Perl executable file's path. 
+   
+   D) This script needs to have a Perl modules Date::Calc, Data::Types and Carp installed on the machine to work as intended using Perl.
+      To install these and other Perl modules (once Perl itself is installed):
+         Run CPAN (requires an active internet connection) by either
+            Going to your relevant start menu item e.g. \Strawberry Perl (64-bit)\Tools from your Start Menu->Programs
+            - OR - 
+            on "cmd.exe" type "perl -MCPAN -e shell"<Enter>
+         Within CPAN type "install Date::Calc Data::Types Carp"<Enter>
             Feel free to tag other modules like cpanm on to the end of the preceeding
+         Type "exit"<enter>; if the window doesn't close, type "exit"<enter> again
 
-2. File edits required (in a plain-text editor, e.g. Notepad) prior to the first use 
-   Change the 2nd line of the .bat file (the "SET EX=" line) to reflect your Perl executable file's path. 
-   If you don't have Carp in your Perl installation, change croak/carp lines in the .pl file as indicated to die/warn.
-
-3. Select en masse, drag and drop the CSV files onto the icon for the .bat file
-   After your first use of the program, this is the only step needed!
-   This will process all CSV files at once, so feel free to select multiple files prior to dropping on the .bat.
-      The .bat file must be in the same directory as the .pl file
-      This script generates a file in the format of "ConvertVUE2forCFTC-output-yyyymmdd_hhmmss.csv" in that directory
-         The time stamp refers to the time the script was run, not the timestamp of the input file(s)
+2. Use Perl script (after your first use of the program, this is the only step needed!)
+   In windows select the desired CSV files to convert en masse, drag and drop them onto the icon for the .bat file
+      This will process all CSV files at once, so feel free to select multiple files prior to dropping on the .bat.
+         The .bat file must be in the same directory as the .pl file
+         This script generates a file in the format of "ConvertVUE2forCFTC-output-yyyymmdd_hhmmss.csv" in that directory
+            The time stamp refers to the time the script was run, not the timestamp of the input file(s)
 --------------------------------------------------------------------
 SECTION 3 - MSAccess*
 *instructions written for MSAccess 2010 - slight modification may be needed for other versions. If unable to perform steps 3-4 due to incompatibility, please send the file generated after step 2, you may use the Orphans queries to perform manual quality-control.
