@@ -5,10 +5,10 @@
 
 <h1>System requirements</h1>
 <ul><li>Windows PC<br>
-</li><li>VUE version 2+<br>
+</li><li>VEMCO VUE<br>
 </li><li>Perl<br>
-</li><li>Microsoft Access (or Libreoffice Base)
-</li></ul>Read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details<br>
+</li><li>Microsoft Access (or Libreoffice Base...untested)
+</li></ul><strong>Read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details</strong><br>
 
 <h1>Input file requirements</h1>
   <ul><li>Acoustic telemetry VRL (or .000) files<br></li>
