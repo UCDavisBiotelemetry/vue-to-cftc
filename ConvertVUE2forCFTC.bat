@@ -25,9 +25,7 @@ FOR %%x in (%*) do (
    IF "%%x"=="/noMS" SET cmdXtra=/noMS
    IF "%%x"=="/yesMS" SET cmdXtra=/yesMS
 )
-echo !cmdXtra!
 FOR %%x in (%*) do (
-   echo %%x
    IF "%%x" NEQ "/noMS" (
       IF "%%x" NEQ "/yesMS" (
          SET /A argCount+=1
