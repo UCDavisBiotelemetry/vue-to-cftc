@@ -8,7 +8,8 @@
 </li><li>VEMCO VUE<br>
 </li><li>Perl<br>
 </li><li>Microsoft Access (or Libreoffice Base...untested)
-</li></ul><strong>Read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details</strong><br>
+</li></ul>
+<strong>Read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details</strong><br>
 
 <h1>Input file requirements</h1>
   <ul><li>Acoustic telemetry VRL (or .000) files<br></li>
@@ -19,6 +20,7 @@
   <ul><li>vue-to-cftc-plusMS.bat - will include milliseconds in output for all detections, including those with no specified milliseconds value (0ms)
   </li><li>vue-to-cftc-noMS.bat - will never include milliseconds, even if present in VUE output. This version is the most compatible with earlier versions of Microsoft Access
   </li><li>vue-to-cftc.bat - will include milliseconds on entries that have milliseconds available from the VUE export. On entries without specified milliseconds (or with exactly 0ms) the output will not include milliseconds. This version is untested with regard to Microsoft Access, but should be roughly as compatible as the plusMS version.</li></ul>
+<strong>Again, please read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details</strong><br>
 
 <h1>Author</h1>
   Matt Pagel<br>
