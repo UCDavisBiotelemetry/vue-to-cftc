@@ -23,8 +23,11 @@
 <strong>Again, please read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details</strong><br>
 
 <h1>Bug reports</h1>
-Please first check if your bug has already been reported [here](https://github.com/MPagel/vue-to-cftc/issues?q=is%3Aissue).<br>
-Then either create an "issue" [here](https://github.com/MPagel/vue-to-cftc/issues/new) or simply e-mail me.
+Please first check if your bug has already been reported [here](../../issues?q=is%3Aissue).<br>
+Then either create an "issue" [here](../../issues/new) or simply e-mail me.
+
+<h1>Other feedback</h1>
+Go ahead and fill out the [same form as a bug report](../../issues/new), telling me exactly how awesome these scripts and forms are.
 
 <h1>Author</h1>
   Matt Pagel<br>
