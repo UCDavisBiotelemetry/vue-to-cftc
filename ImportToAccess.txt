@@ -1,102 +1,111 @@
 Documentation adapted from Arnold Amman's Instructions for VUE 1.8/CSV 1.0
 
-SECTION 1 - VUE 2+ (2.1.3 tested):
+SECTION 1 - VUE 2+ (2.1.3 & 2.2.0 tested):
 
 Using VUE to process and correct clock drift for VR2W/VR3 files:
 In Windows Explorer/My Computer
-1. Find the VRLs that you wish to process and place them all into the same directory on your computer
-   This directory should not have any VRLs that you don't intend to process
-2. Create a subdirectory (within the above directory) that will house the drift-corrected data (e.g. "drift" or "DC")
-3. In the drift subdirectory, press "Control-L" on your keyboard and copy your directory path ("Control-C")
+1. Find the VRLs that you wish to process and place them all into the same directory on your computer.
+   This directory should not have any VRLs that you don't intend to process.
+2. Create a subdirectory (within the above directory) that will house the drift-corrected data (e.g. "drift" or "DC").
+3. In the drift subdirectory, press "Control-L" on your keyboard and copy your directory path ("Control-C").
 
 In VUE
-4. Run VUE and then Create a new VUE DB for drift-corrected data
-   FILE -> New Database...
-   Press "Control-V" to indicate the created subdirectory
-   Type a "\" followed by a database name, e.g. "\drift-corrected" and press "Enter"
-5. Change the output location for the individual drift-corrected VRLs
-   FILE -> "Options" button (not in the drop-down menu) -> "Offload" tab -> "Change" button
-   Press "Control-V" "Enter" to select the subdirectory (note: you may have to manually navigate here this time...)
-   While you're here: click the "Export" tab within the options. Make sure the bubble for "Default Version" is selected (note, the CSV output for VUE 1 is now also supported)
-   Click "OK"
-6. Import the non-drift-corrected VRLs and drift correct
-   FILE -> "Tools" -> VRL File Editor
-   "Control-V" then press the "Backspace" key on your keyboard to navigate "up" one level to the non-drift-corrected data
-   Click the top(-left) VRL file, then hold down your shift key, click on the bottom(-right) VRL file - this selects all the VRLs in the directory
-   Hit "Enter" or click "OK"
+4. Run VUE and then Create a new VUE DB for drift-corrected data.
+   Click on FILE -> New Database...
+   Press "Control-V" to indicate the created subdirectory.
+   Type a "\" followed by a database name, e.g. "\drift-corrected" and press "Enter".
+5. Change the output location for the individual drift-corrected VRLs.
+   Click on FILE -> "Options" button (not in the drop-down menu) -> "Offload" tab -> "Change" button.
+   Press "Control-V" "Enter" to select the subdirectory. (Note: you may have to manually navigate here this time...)
+   While you're here: click the "Export" tab within the options. Please either
+       Select "Default format" .
+       - OR - 
+       Select "Custom" and Use the Custom Configuration with "Default" column names selected in the dropdown and the checkboxes next to "no trailing commas" and "Millisecond time precision" selected.
+       (Note: the CSV output for VUE 1 is now also supported, but is not recommended).
+   Click "OK".
+6. Import the non-drift-corrected VRLs and drift correct.
+   Click on FILE -> "Tools" -> VRL File Editor.
+   "Control-V" then press the "Backspace" key on your keyboard to navigate "up" one level to the non-drift-corrected data.
+   Click the top(-left) VRL file, then hold down your shift key, click on the bottom(-right) VRL file - this selects all the VRLs in the directory.
+   Hit "Enter" or click "OK".
    The "Edit and Import VRL Files" dialogue should pop up. In this every second line is the file that you're importing.
-      On these lines, ensure Time Zone is set to UTC (otherwise click on the value there and select "0" then click outside of the box)
-   Click "Autocorrect"
-   Click "Import" (your response for the radio button dialogue doesn't matter, as the database is empty)
-   Click "OK" when appropriate
-7. Check and Export your Detections
-   DETECTIONS tab
-   Delete your tester tags from the Transmitters section in the left pane (right click, select delete or just press the "delete" key on your keyboard)
-   Click back to "All Detections" or create an appropriate filtered subset in the left pane
-   Click the export (red arrow pointing right) button -> Export CSV
-   Change "Sensor format" to "Raw sensor values"
-   "Change" the Output File at the top. "Control-V" 
+      On these lines, ensure Time Zone is set to UTC (otherwise click on the value there and select "0" then click outside of the box).
+   Click "Autocorrect".
+   Click "Import" (your response for the radio button dialogue doesn't matter, as the database is empty).
+   Click "OK" when appropriate.
+7. Check and Export your Detections.
+   Click on the DETECTIONS tab.
+   Delete your tester tags from the Transmitters section in the left pane (right click, select delete or just press the "delete" key on your keyboard).
+   Click back to "All Detections" or create an appropriate filtered subset in the left pane.
+   Click the export (red arrow pointing right) button -> Export CSV.
+   Change "Sensor format" to "Raw sensor values".
+   "Change" the Output File at the top. "Control-V" .
    "\" followed by an output file name, e.g. filtered-drift-corrected or all-DCd. Make sure there are no spaces in the file name.
-   Click "Save" or Press "Enter"
+   Click "Save" or Press "Enter".
 --------------------------------------------------------------------
 SECTION 2 - PERL/MS-DOS:
 
-1. Perl installation check prior to first use
-   To get to a DOS Command Prompt aka "cmd.exe" in the instructions to follow
-      Windows XP/Vista: Start->Run Type "cmd.exe"<enter>
-      Windows 7/8/8.1/10: Press the Windows Key, type "cmd", click on the entry
+1. Perl installation check: prior to first use only
+   To get to a DOS Command Prompt aka "cmd.exe" in the instructions to follow:
+      Windows XP/Vista: Start->Run Type "cmd.exe"<enter>.
+      Windows 7/8/8.1/10: Press the Windows Key, type "cmd", click on the entry.
 
-   A) Choose a Perl installation online (e.g. Strawberry Perl, ActiveState Perl, both available as external links from http://www.perl.org/get.html), download and install it according to the relevant instructions
-   B) Recommended: Check and/or set your Windows %Path% environment variable to look for the Perl program directory
-      Note: you can skip this step if you adjust the EX environmental variable within ConvertVUE2forCFTC.bat as indicated
+   A) Choose a Perl installation online (e.g. Strawberry Perl, ActiveState Perl, both available as external links from http://www.perl.org/get.html), download and install it according to the relevant instructions.
+
+   B) Recommended: Check and/or set your Windows %Path% environment variable to look for the Perl program directory.
+      Note: you can skip this step if you adjust the EX environmental variable within ConvertVUE2forCFTC.bat as indicated.
       From cmd.exe type "echo %PATH%"<enter>
-      If the %PATH% output doesn't include a perl bin directory (e.g. D:\Programs\strawberry\perl\bin), you'll need to add it to your Environment variables
+      If the %PATH% output doesn't include a perl bin directory (e.g. D:\Programs\strawberry\perl\bin), you'll need to add it to your Environment variables.
          If you wish to add capability to run VUE-to-CFTC for just a single login account on your computer
-            From cmd.exe type '"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables' (include "s, but not 's)
+            From cmd.exe type '"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables' (include "s, but not 's).
             In the top group (User variables for <username>), Edit "Path" or click "New..." if "Path" not present.
-               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *)
+               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *).
          If you wish to add capability to run VUE-to-CFTC for all users on your computer
             From cmd.exe type
-               Windows 7-10: "control sysdm.cpl,,3"<enter>
+               Windows 7-10: "control sysdm.cpl,,3"<enter>.
                - OR -
-               Any Windows: "rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl,,3"<enter>
-            Type a username/password for a user with ADMINISTRATOR level access if prompted
-            Click "Environment Variables"
-            In the System variables (bottom) section, Edit "Path" or click "New..." if "Path" not present
-               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *)
-            Skip C; Resume with D
+               Any Windows: "rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl,,3"<enter>.
+            Type a username/password for a user with ADMINISTRATOR level access if prompted.
+            Click "Environment Variables".
+            In the System variables (bottom) section, Edit "Path" or click "New..." if "Path" not present.
+               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *).
+      If you have set a %PATH% value as instructed here in optional step B, skip optional step C; Resume with step D.
 * If there are other values present, please seperate existing entries from this entry with a ";"
-     e.g. "D:\Program\strawberry\perl\bin;C:\windows;C:\windows\system32"
+     e.g. "D:\Program\strawberry\perl\bin;C:\windows;C:\windows\system32".
 
-   C) Explicitly specify perl paths every time you run perl or a perl script (not recommended, use B instead)
-      Type e.g. "D:\Programs\strawberry\perl\bin\perl.exe" instead of simply "perl" in any of the following commands. You will also need to edit ConvertVUE2forCFTC.bat
+   C) Explicitly specify perl paths every time you run perl or a perl script (not recommended, use B instead).
+      Type e.g. "D:\Programs\strawberry\perl\bin\perl.exe" instead of simply "perl" in any of the following commands. You will also need to edit ConvertVUE2forCFTC.bat.
       File edits required (in a plain-text editor, e.g. Notepad) prior to the first use:
          Change the 2nd line of the .bat file (the "SET EX=" line) to reflect your Perl executable file's path. 
    
    D) This script needs to have a Perl modules Date::Calc, Data::Types and Carp installed on the machine to work as intended using Perl.
       To install these and other Perl modules (once Perl itself is installed):
          Run CPAN (requires an active internet connection) by either
-            Going to your relevant start menu item e.g. \Strawberry Perl (64-bit)\Tools from your Start Menu->Programs
+            going to your relevant start menu item e.g. \Strawberry Perl (64-bit)\Tools\CPAN Client from your Start Menu->Programs.
             - OR - 
-            on "cmd.exe" type "perl -MCPAN -e shell"<Enter>
-         Within CPAN type "install Date::Calc Data::Types Carp"<Enter>
-            Feel free to tag other modules like cpanm on to the end of the preceeding
-         Type "exit"<enter>; if the window doesn't close, type "exit"<enter> again
+            on "cmd.exe" type "perl -MCPAN -e shell"<Enter>.
+         Within CPAN type "install Date::Calc Data::Types Carp"<Enter>.
+            Feel free to tag other modules like cpanm on to the end of the preceeding.
+         Type "exit"<enter>; if the window doesn't close, type "exit"<enter> again.
 
-2. Use Perl script (after your first use of the program, this is the only step needed!)
-   In windows select the desired CSV files to convert en masse, drag and drop them onto the icon for the .bat file
-      This will process all CSV files at once, so feel free to select multiple files prior to dropping on the .bat.
-         The .bat file must be in the same directory as the .pl file
-         This script generates a file in the format of "ConvertVUE2forCFTC-output-yyyymmdd_hhmmss.csv" in that directory
-            The time stamp refers to the time the script was run, not the timestamp of the input file(s)
+2. Use Perl script
+   Note: after your first use of the program, this is the only Perl step needed and further does not require you to know Perl or Windows Command Prompt syntax.
+    In windows, please select and then drag the desired .csv file(s <em>en masse</em>) generated by VUE on top of one of the three <em>vue-to-cftc</em>.bats.
+       vue-to-cftc-plusMS.bat - will include milliseconds in output for all detections, including those with no specified milliseconds value (0ms).
+       vue-to-cftc-noMS.bat - will never include milliseconds, even if present in VUE output. This version is the most compatible with earlier versions of Microsoft Access.
+       vue-to-cftc.bat - will include milliseconds on entries that have milliseconds available from the VUE export. On entries without specified milliseconds (or with exactly 0ms) the output will not include milliseconds. This version is untested with regard to Microsoft Access, but should be roughly as compatible as the plusMS version.
+    This will process all CSV files at once, so feel free to select multiple files prior to dropping on the .bat.
+         The .bat files must be in the same directory as the .pl file.
+         This script generates a file in the format of "ConvertVUE2forCFTC-output-yyyymmdd_hhmmss.csv" in that directory.
+            The time stamp refers to the time the script was run, not the timestamp of the input file(s).
 --------------------------------------------------------------------
 SECTION 3 - MSAccess*
-*instructions written for MSAccess 2010 - slight modification may be needed for other versions. If unable to perform steps 3-4 due to incompatibility, please send the file generated after step 2, you may use the Orphans queries to perform manual quality-control.
+*instructions written for MSAccess 2010 - slight modification may be needed for other versions. If unable to perform steps 3-4 due to incompatibility, please send the file generated after step 2; you may alternatively use or adapt the Orphans queries to perform manual quality-control.
 
 1. Import the generated CSV into the MSAccess DB attached (note: please leave this file as a .mdb. Do not save in the more recent .accdb format).
-   Go to "External Data"->"(import & link section) Text File..."
-   Input the file path as the data source
-      Quick pro tip: hold shift and right click on the file in Explorer and select "copy as path" then paste it into Access's file name field.
+   Go to "External Data"->"(import & link section) Text File...".
+   Input the file path as the data source.
+      Quick Windows tip: hold shift and right click on the file in Explorer and select "copy as path" then paste it into Access's file name field.
    Click "append a copy of the records to the table: Import_Detections" and click "Next" a few times.
 
 2. Import/Enter data into the Import_Deployments table as appropriate to cover all times that you had a deployment.
@@ -105,7 +114,7 @@ SECTION 3 - MSAccess*
 
 4. Double-click "mMoveOrphans" in the Macros section.  Follow the prompts.
    If it says you have a lot of Orphans, you'll probably want to either look at your Deployment windows or your Detections in detail.
-   The final step of this macro allows you to choose to Delete the Orphaned detections from the original table
+   The final step of this macro allows you to choose to Delete the Orphaned detections from the original table.
       If you cancel the last step, the net effect will be to COPY, rather than MOVE, the affected detections to the DetectOrphans table.
 --------------------------------------------------------------------
 Then send the access file to us for upload to the main database.
