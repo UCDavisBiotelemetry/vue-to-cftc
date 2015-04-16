@@ -22,6 +22,9 @@
   </li><li>vue-to-cftc.bat - will include milliseconds on entries that have milliseconds available from the VUE export. On entries without specified milliseconds (or with exactly 0ms) the output will not include milliseconds. This version is untested with regard to Microsoft Access, but should be roughly as compatible as the plusMS version.</li></ul>
 <strong>Again, please read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details</strong><br>
 
+<h1>Bug reports</h1>
+Please either create an "issue" [here](https://github.com/MPagel/vue-to-cftc/issues) or simply e-mail me
+
 <h1>Author</h1>
   Matt Pagel<br>
   UCDavis Biotelemetry Lab<br>
