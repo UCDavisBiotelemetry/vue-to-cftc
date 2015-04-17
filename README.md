@@ -44,10 +44,8 @@ If you have any technical problems with Git or GitHub, rather than this project 
 <h2>Improvements and modifications</h2>
 <p>If you have improvements and modifications that you've programmed yourself, feel free to submit them to me.</p>
 * On Github
-
   Make modifications by creating your own GitHub account and then ["forking" this project by clicking here:fork_and_knife:](../../fork). You can let me know about updates and fixes you've created by doing what github calls a [pull request, here:muscle:](../../compare).  You can, in turn, check if anyone has requested to [update your fork:fork_and_knife:](../../pulls?q=is%3Apr) with THEIR modifications [here:fork_and_knife:](../../pulls?q=is%3Apr).
 * Offline/via e-mail
-
   You can choose to ["go old school" and just download:floppy_disk:](../../archive/master.zip), modify and then send me the modifications via e-mail. If you're having trouble tracking down my e-mail address you can [tell me your e-mail address here:mailbox:](../../issues/new). The github system will send me an e-mail, then I'll reply to the address you provide, so you know where to send the files.
 
 <h2>Other feedback</h2>
