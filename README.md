@@ -44,7 +44,7 @@ If you have any technical problems with Git or GitHub, rather than this project 
 ##### Improvements and modifications[:exclamation:](../../fork "Fork this Project")
 <p>If you have improvements and modifications that you've programmed yourself, feel free to submit them to me.</p>
 * On Github
-  Make modifications by creating your own GitHub account and then ["forking"](../../fork) [![Fork]](../../fork) this project by clicking [here](../../fork "Fork this Project"). You can let me know about updates and fixes you've created by doing what github calls a [pull request, here](../../compare).  You can, in turn, check if anyone has requested to [update your fork:fork_and_knife:](../../pulls?q=is%3Apr "Fork") with THEIR modifications [here](../../pulls?q=is%3Apr "Fork").
+  Make modifications by creating your own GitHub account and then ["forking"](../../fork) this project by clicking [here](../../fork "Fork this Project"). You can let me know about updates and fixes you've created by doing what github calls a [pull request, here](../../compare).  You can, in turn, check if anyone has requested to [update your fork:fork_and_knife:](../../pulls?q=is%3Apr "Fork") with THEIR modifications [here](../../pulls?q=is%3Apr "Fork").
 * Offline/via e-mail
   You can choose to ["go old school" and just download:floppy_disk:](../../archive/master.zip "Download"), modify and then send me the modifications via e-mail[:mailbox:](../../issues/new). If you're having trouble tracking down my e-mail address you can [tell me your e-mail address here](../../issues/new). The github system will send me an e-mail, then I'll reply to the address you provide, so you know where to send the files.
 
