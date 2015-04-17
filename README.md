@@ -35,26 +35,26 @@ This documentation assumes that you've already used VEMCO's VUE to download your
  
 **Again, please read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details.**
 
-<h2>Bug reports</h2>
-Please first check if your bug has already been reported [here:ok_hand:](../../issues?q=is%3Aissue).<br>
-Then either create an "issue" [here:thumbsdown:](../../issues/new) or simply e-mail me.
+## Bug reports[:thumbsdown:](../../issues/new)
+Please first check if your bug has already been reported [here](../../issues?q=is%3Aissue).<br>
+Then either create an "issue" [here](../../issues/new) or simply e-mail me.
 
 If you have any technical problems with Git or GitHub, rather than this project specifically, [ask GitHub Support](https://github.com/contact) directly.
 
-<h2>Improvements and modifications</h2>
+## Improvements and modifications[:exclamation:](../../fork)
 <p>If you have improvements and modifications that you've programmed yourself, feel free to submit them to me.</p>
 * On Github
-  Make modifications by creating your own GitHub account and then ["forking" this project by clicking here:fork_and_knife:](../../fork). You can let me know about updates and fixes you've created by doing what github calls a [pull request, here:muscle:](../../compare).  You can, in turn, check if anyone has requested to [update your fork:fork_and_knife:](../../pulls?q=is%3Apr) with THEIR modifications [here:fork_and_knife:](../../pulls?q=is%3Apr).
+  Make modifications by creating your own GitHub account and then ["forking":fork_and_knife:this project by clicking here](../../fork). You can let me know about updates and fixes you've created by doing what github calls a [pull:muscle:request, here](../../compare).  You can, in turn, check if anyone has requested to [update your fork:fork_and_knife:](../../pulls?q=is%3Apr) with THEIR modifications [here](../../pulls?q=is%3Apr).
 * Offline/via e-mail
-  You can choose to ["go old school" and just download:floppy_disk:](../../archive/master.zip), modify and then send me the modifications via e-mail. If you're having trouble tracking down my e-mail address you can [tell me your e-mail address here:mailbox:](../../issues/new). The github system will send me an e-mail, then I'll reply to the address you provide, so you know where to send the files.
+  You can choose to ["go old school" and just download:floppy_disk:](../../archive/master.zip), modify and then send me the modifications via e-mail[:mailbox:](../../issues/new). If you're having trouble tracking down my e-mail address you can [tell me your e-mail address here](../../issues/new). The github system will send me an e-mail, then I'll reply to the address you provide, so you know where to send the files.
 
-<h2>Other feedback</h2>
-Go ahead and fill out the [same form as a bug report :question:](../../issues/new), telling me exactly how awesome these scripts and forms are.
+## Other feedback[:question:](../../issues/new)
+Go ahead and fill out the [same form as a bug report](../../issues/new), telling me exactly how awesome these scripts and forms are.
 
-<h2>Author</h2>
+## Author[:book:](../../../)
   Matt Pagel<br>
   UCDavis Biotelemetry Lab<br>
   (last name at cs dot wisc.edu)<br>
   530 752-1156
 
-My other github projects are [listed here:book:](../../../).<br>
+My other github projects are [listed here](../../../).<br>
