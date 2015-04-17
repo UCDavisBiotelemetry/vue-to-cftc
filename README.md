@@ -1,3 +1,4 @@
+<html><head><link rel="stylesheet" href="https://octicons.github.com/components/octicons/octicons/octicons.css"></head><body>
 # Project goal of vue-to-cftc #
 This repository enables the field biologist maintaining a CFTC core array receiver to submit data in a format acceptable to our database.<br>
 This is achieved by providing the scientist with a series of useful, small programs, a corresponding Microsoft Access Database and instruction for use.
@@ -58,4 +59,7 @@ Go ahead and fill out the [same form as a bug report](../../issues/new), telling
   530 752-1156
 
 My other github projects are [listed here](../../../).<br>
-<span class="octicon octicon-repo-forked">test</span>
+[test](../../class="octicon octicon-repo-forked")
+<span class="octicon octicon-git-pull-request"></span>
+<body>
+</html>
