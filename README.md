@@ -59,7 +59,9 @@ Go ahead and fill out the [same form as a bug report](../../issues/new), telling
   530 752-1156
 
 My other github projects are [listed here](../../../).<br>
-[test](../../class="octicon octicon-repo-forked")
-<span class="octicon octicon-git-pull-request"></span>
-<body>
+
+
+[test](../../ class="octicon octicon-repo-forked")<br>
+<span class="octicon octicon-git-pull-request"><a href="../../../" class="octicon octicon-git-pull-request" aria-label="Switch themes">testing</a></span>
+</body>
 </html>
