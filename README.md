@@ -1,4 +1,3 @@
-<html><head><link rel="stylesheet" href="https://octicons.github.com/components/octicons/octicons/octicons.css"></head><body>
 # Project goal of vue-to-cftc #
 This repository enables the field biologist maintaining a CFTC core array receiver to submit data in a format acceptable to our database.<br>
 This is achieved by providing the scientist with a series of useful, small programs, a corresponding Microsoft Access Database and instruction for use.
@@ -14,7 +13,7 @@ This is achieved by providing the scientist with a series of useful, small progr
 ##### File requirements
   <ul><li>Acoustic telemetry __VRL__ (or __.000__) files.</li>
   <li>Corresponding deployments entries in a __CSV__ or __XLS__/__XLSX__.</li>
-  <li>The __.bat__ and __.pl__ scripts from this lovely online repository that you are currently viewing. You can obtain these compressed in __.zip__ format by [clicking here:floppy_disk:](../../archive/master.zip "Download").</li></ul>
+  <li>The __.bat__ and __.pl__ scripts from this lovely online repository that you are currently viewing. You can obtain these compressed in __.zip__ format by [clicking here![Download Icon](/octicons/gif/cloud-download.gif)](../../archive/master.zip).</li></ul>
 
 ##### Basic workflow
 This documentation assumes that you've already used VEMCO's VUE to download your data from a receiver.
@@ -36,21 +35,28 @@ This documentation assumes that you've already used VEMCO's VUE to download your
  
 **Again, please read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details.**
 
-##### Bug reports[:thumbsdown:](../../issues/new "Bug")
+##### Bug reports[![Bug Icon (Mega)](octicons/gif/bug_mega.gif)](../../issues/new?utf8=%E2%9C%93&authenticity_token=blah&title=Bug%3A%20&body=&labels%5B%5D=&labels%5B%5D=bug&milestone_title=)
 Please first check if your bug has already been reported [here](../../issues?q=is%3Aissue).<br>
-Then either create an "issue" [here](../../issues/new) or simply e-mail me.
+Then either create an "issue" [here![Bug Icon](octicons/gif/bug.gif)](../../issues/new?utf8=%E2%9C%93&authenticity_token=blah&title=Bug%3A%20&body=&labels%5B%5D=&labels%5B%5D=bug&milestone_title=) or simply e-mail me.
 
 If you have any technical problems with Git or GitHub, rather than this project specifically, [ask GitHub Support](https://github.com/contact) directly.
 
-##### Improvements and modifications[:exclamation:](../../fork "Fork this Project")
-<p>If you have improvements and modifications that you've programmed yourself, feel free to submit them to me.</p>
-* On Github
-  Make modifications by creating your own GitHub account and then ["forking"](../../fork) this project by clicking [here](../../fork "Fork this Project"). You can let me know about updates and fixes you've created by doing what github calls a [pull request, here](../../compare).  You can, in turn, check if anyone has requested to [update your fork:fork_and_knife:](../../pulls?q=is%3Apr "Fork") with THEIR modifications [here](../../pulls?q=is%3Apr "Fork").
-* Offline/via e-mail
-  You can choose to ["go old school" and just download:floppy_disk:](../../archive/master.zip "Download"), modify and then send me the modifications via e-mail[:mailbox:](../../issues/new). If you're having trouble tracking down my e-mail address you can [tell me your e-mail address here](../../issues/new). The github system will send me an e-mail, then I'll reply to the address you provide, so you know where to send the files.
+#####  Make modifications to my source
+* On Github[![Fork Project Icon (Mega)](octicons/gif/repo-forked_mega.gif)](../../fork)
 
-##### Other feedback[:question:](../../issues/new)
-Go ahead and fill out the [same form as a bug report](../../issues/new), telling me exactly how awesome these scripts and forms are.
+  1. Make modifications by creating your own GitHub account and then ["forking"![Fork Project Icon](octicons/gif/repo-forked.gif)](../../fork) this project by clicking that funky looking icon over there![look left](octicons/gif/arrow-left.gif) or maybe up there![look up](octicons/gif/arrow-up.gif). 
+  1. You can let me know about updates and fixes you've created by doing what GitHub calls a pull request[![Pull Request Icon](octicons/gif/git-pull-request.gif)](../../compare).
+  1. You can check if anyone has requested to update your [fork![Fork Project Icon](octicons/gif/repo-forked.gif)](../../pulls?q=is%3Apr) with THEIR modifications [here![Pull Request Icon](octicons/gif/git-pull-request.gif)](../../pulls?q=is%3Apr). 
+  1. For your fork[![Fork Project Icon](octicons/gif/repo-forked.gif)](../../fork) of the project, you can just edit the link![look down](octicons/gif/arrow-down.gif) that says "send me the modifications via e-mail" with [&lt;your@address.com&gt;](<your@address.com>), remembering to include the less than (&lt;) and greater than (&gt;) symbols around your actual address.
+  1. Remember if you fork[![Fork Project Icon](octicons/gif/repo-forked.gif)](../../fork) this project, you'll have to go to your settings dialogue[![Settings Icon](octicons/gif/tools.gif)](../../settings) and enable issue tracking by checking![Check Icon](octicons/gif/check.gif) the box:white_small_square: next to "Issues" under "Features".
+* Offline/via e-mail[![Email icon (Mega)](octicons/gif/mail-read_mega.gif)](../../issues/new?title=I%27d%20like%20to%20send%20you%20modifications%20to%20your%20feedback%20repo%20over%20email&body=My%20address%20is%3A)
+
+  1. You can choose to "go old school" and [Download![Official Download Icon](octicons/gif/cloud-download.gif)](../../archive/master.zip)
+  2. Modify and then 
+  3. Send me the modifications via [e-mail![email icon](octicons/gif/mail.gif)](../../issues/new?title=I%27d%20like%20to%20send%20you%20modifications%20to%20your%20feedback%20repo%20over%20email&body=My%20address%20is%3A), which you can do by [telling me your e-mail address![email icon](octicons/gif/mail.gif)](../../issues/new?title=I%27d%20like%20to%20send%20you%20modifications%20to%20your%20feedback%20repo%20over%20email&body=My%20address%20is%3A). The GitHub system will send me an e-mail, then I'll reply to the address you provide, so you'll know where to send the files.
+
+##### Other feedback or questions[![Question Mark Icon (Mega)](octicons/gif/question_mega.gif)](../../issues/new?utf8=%E2%9C%93&authenticity_token=blah&title=Q%3A%20&body=&labels%5B%5D=&labels%5B%5D=question&milestone_title=)
+Go ahead and fill out the same form as a bug report[![Comment Icon](octicons/gif/comment.gif)](../../issues/new?utf8=%E2%9C%93&authenticity_token=blah&title=Feedback%3A%20&body=&labels%5B%5D=&labels%5B%5D=feedback&milestone_title=), telling me exactly how awesome these scripts and forms are.
 
 ##### Author[:book:](../../../)
   Matt Pagel<br>
@@ -58,10 +64,4 @@ Go ahead and fill out the [same form as a bug report](../../issues/new), telling
   (last name at cs dot wisc.edu)<br>
   530 752-1156
 
-My other github projects are [listed here](../../../).<br>
-
-
-[test](../../ class="octicon octicon-repo-forked")<br>
-<span class="octicon octicon-git-pull-request"><a href="../../../" class="octicon octicon-git-pull-request" aria-label="Switch themes">testing</a></span>
-</body>
-</html>
+My other github projects are [listed here![GitHub TM](octicons/gif/mark-github.gif)](../../../).<br>
