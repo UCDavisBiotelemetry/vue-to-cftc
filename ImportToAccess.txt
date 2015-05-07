@@ -3,11 +3,13 @@ Documentation adapted from Arnold Amman's Instructions for VUE 1.8/CSV 1.0
 SECTION 1 - VUE 2+ (2.1.3 & 2.2.0 tested):
 
 Using VUE to process and correct clock drift for VR2W/VR3 files:
-In Windows Explorer/My Computer
+In Windows Explorer a.k.a. My Computer
 1. Find the VRLs that you wish to process and place them all into the same directory on your computer.
    This directory should not have any VRLs that you don't intend to process.
 2. Create a subdirectory (within the above directory) that will house the drift-corrected data (e.g. "drift" or "DC").
-3. In the drift subdirectory, press "Control-L" on your keyboard and copy your directory path ("Control-C").
+3. In the drift subdirectory, go to the address bar of your windows explorer window* your keyboard and copy your directory path (Ctrl+C).
+
+* You can navigate to your Windows Explorer address bar by pressing Alt+D; In Windows 8 or later, you can alternatively use Ctrl+L (which is incidentally what Macs and Linux support).
 
 In VUE
 4. Run VUE and then Create a new VUE DB for drift-corrected data.
