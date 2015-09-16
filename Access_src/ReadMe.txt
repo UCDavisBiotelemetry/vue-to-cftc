@@ -1,0 +1,1 @@
+In order to make version tracking of the included MS Access database transparent, I am including text-source of the MS Jet SQL queries and Visual Basic for Applications (VBA) in this directory.

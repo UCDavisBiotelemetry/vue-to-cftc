@@ -1,0 +1,33 @@
+	CREATE TABLE [Import_Deployments](
+	[Location] text(255) NULL,
+	[VR2SN] int NOT NULL,
+	[Start] datetime NOT NULL,
+	[Stop] datetime NULL,
+	[Depth] float NULL,
+	[Operator] text(255) NULL,
+	[New_Study_Initialized] text(255) NULL,
+	[Name_of_Laptop_Used] text(50) NULL,
+	[Correct_Time] text(255) NULL,
+	[Hardware_Condition] text(255) NULL,
+	[Rope_Cable_Condition] text(255) NULL,
+	[VR2_Condition] text(255) NULL,
+	[Fouling_Organisms] text(255) NULL,
+	[Fouling_Level] text(255) NULL,
+	[AR_Release_Code] text(255) NULL,
+	[AR_Time_for_Surfacing] smallint NULL,
+	[AR_Distance_Away_Surfaced] float NULL,
+	[TL_SN] int NULL,
+	[TL_Date_New] datetime NULL,
+	[TL_Depth] float NULL,
+	[Depth_VR2_From_Bottom] float NULL,
+	[Depth_VR2_From_Surface] float NULL,
+	[Anchor_Weight] float NULL,
+	[Mooring_Method] text(255) NULL,
+	[Additional_Notes] text NULL,
+	[VR2_orient] text NULL,
+	[Headerdata_FileName] text(255) NULL,
+ CONSTRAINT [PK_Monitor_Deployments] PRIMARY KEY  
+(
+	[VR2SN],
+	[Start]
+))

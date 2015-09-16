@@ -1,0 +1,9 @@
+# In the Microsoft Access database file click Database Tools -> Visual Basic (or double click on an existing module)
+# Within the VBA editor window that opens, click Tools -> References.  Verify the following are available, selected, and in this order.
+Visual Basic For Applications
+Microsoft Access 14.0 Object Library
+OLE Automation
+Microsoft ActiveX Data Objects 2.1 Library
+Microsoft Visual Basic for Applications Extensibility 5.3
+Microsoft DAO 3.6 Object Library
+Microsoft Office 14.0 Object Library
