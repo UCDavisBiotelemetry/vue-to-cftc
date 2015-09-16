@@ -7,9 +7,9 @@ In Windows Explorer a.k.a. My Computer
 1. Find the VRLs that you wish to process and place them all into the same directory on your computer.
    This directory should not have any VRLs that you don't intend to process.
 2. Create a subdirectory (within the above directory) that will house the drift-corrected data (e.g. "drift" or "DC").
-3. In the drift subdirectory, go to the address bar of your windows explorer window* your keyboard and copy your directory path (Ctrl+C).
+3. In the drift subdirectory, go to the address bar of your windows explorer window* and copy your directory path (Ctrl+C).
 
-* You can navigate to your Windows Explorer address bar by pressing Alt+D; In Windows 8 or later, you can alternatively use Ctrl+L (which is incidentally what Macs and Linux support).
+* You can navigate to your Windows Explorer address bar by pressing Alt+D on your keyboard; In Windows 8 or later, you can alternatively use Ctrl+L (which is incidentally what Macs and Linux support).
 
 In VUE
 4. Run VUE and then Create a new VUE DB for drift-corrected data.
