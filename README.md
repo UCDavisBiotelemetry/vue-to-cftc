@@ -18,7 +18,7 @@ This is achieved by providing the scientist with a series of useful, small progr
 ##### Basic workflow
 This documentation assumes that you've already used VEMCO's VUE to download your data from a receiver.
 
-1. Create a **vdb** with time drift-corrected data.
+1. Create a **vdb** with time drift-corrected data. You may use the included AutoHotkey (ahk) script to use a larger window within VUE if you have multiple receivers to import at once.
 1. <em>Optional:</em> You may choose to delete tester or beacon tags so only data on fish tags are included.
 1. Export all <em>(remaining)</em> detections in **.csv** format.
 1. Convert **csv** files using **.bat** and perl (**pl**)script files into CFTC format (PST time).
