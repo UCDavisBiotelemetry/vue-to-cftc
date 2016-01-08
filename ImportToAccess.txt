@@ -1,16 +1,13 @@
-Documentation adapted from Arnold Amman's Instructions for VUE 1.8/CSV 1.0
+SECTION 1 - Using VUE to process and correct clock drift for VR2W/VR3 files
+   VUE 2+ (2.1.3 & 2.2.0 tested)
 
-SECTION 1 - VUE 2+ (2.1.3 & 2.2.0 tested):
-
-Using VUE to process and correct clock drift for VR2W/VR3 files:
 In Windows Explorer a.k.a. My Computer
 1. Find the VRLs that you wish to process and place them all into the same directory on your computer.
    This directory should not have any VRLs that you don't intend to process.
 2. Create a subdirectory (within the above directory) that will house the drift-corrected data (e.g. "drift" or "DC").
-3. In the drift subdirectory, go to the address bar of your windows explorer window* and copy your directory path (Ctrl+C).
-
-* You can navigate to your Windows Explorer address bar by pressing <Alt+D> on your keyboard
-  In Windows 8 or later, you can alternatively use <Ctrl+L> (which is incidentally what Macs and Linux support).
+3. In the drift subdirectory, go to the address bar of your windows explorer window* and copy your directory path <Ctrl+C>.
+   You can navigate to your Windows Explorer address bar by pressing <Alt+D> on your keyboard
+   In Windows 8 or later, you can alternatively use <Ctrl+L> (which is incidentally what Macs and Linux support).
 
 In VUE
 4. Run VUE and then Create a new VUE DB for drift-corrected data.
@@ -66,7 +63,7 @@ In VUE
    
 --------------------------------------------------------------------
 
-SECTION 2 - PERL/MS-DOS:
+SECTION 2 - PERL/MS-DOS
 
 0. DOS background
    If the instructions to follow call for you to get to a DOS Command Prompt or "cmd.exe"
@@ -108,19 +105,19 @@ SECTION 2 - PERL/MS-DOS:
       Create a new variable named PERL5LIB with value e.g. "C:\strawberry\perl\lib" using the same method as described for PATH
       Click "OK" to save the changes to the relevant environment variables
 
-* If there are other values present for this environment variable, please separate existing entries from this entry with a ";".
-  WARNING Erasing existing values may lead to significant issues with other programs installed on your computer!
-     e.g. "C:\strawberry\perl\bin;C:\windows;C:\windows\system32" if the old value was "C:\windows;C:\windows\system32"
+* WARNING: Erasing existing environment variable values may lead to significant issues with other programs installed on your computer!
+   If there are other values present for an environment variable, please separate existing entries from this entry with a ";".
+   e.g. "C:\strawberry\perl\bin;C:\windows;C:\windows\system32" if the old value was "C:\windows;C:\windows\system32"
 
    C) This script requires Perl modules Date::Calc, Data::Types and Carp installed on the machine to work as intended.
-      To install these and other Perl modules (once Perl itself is installed):
+      To install these and other Perl modules or libraries to an existing Perl installation
          Run CPAN (requires an active internet connection) by either
             going to your relevant start menu item e.g. \Strawberry Perl (64-bit)\Tools\CPAN Client from your Start Menu->Programs.
             - OR - 
             on "cmd.exe" type "perl -MCPAN -e shell"<Enter>.
          Within CPAN type "install Date::Calc Data::Types Carp"<Enter>.
             Feel free to tag other modules (e.g. cpanm) on to the end of the preceding line.
-         Type "exit"<enter>; if the window doesn't close, type "exit"<enter> again.
+         Type "exit"<Enter>; if the window doesn't close, type "exit"<Enter> again.
 
 2. Use Perl script
    Note: after your first use of the program, this is the only DOS/Perl step needed and will only require you to drag-and-drop in Windows
@@ -140,14 +137,13 @@ SECTION 2 - PERL/MS-DOS:
 
 --------------------------------------------------------------------
 
-SECTION 3 - Microsoft Access*
-
-*instructions written for MS Access 2010
+SECTION 3 - Microsoft Access
+   Instructions written for MS Access 2010
    Slight modification may be needed for other versions.
    If unable to perform steps 3-4 due to MS Access version incompatibility
-      (Preferred) Use or adapt the Orphans queries to perform manual quality-control in MS Access
+      (Preferred) Please or adapt the Orphans queries to perform manual quality-control in MS Access
           - OR -
-      Please send the file generated after SECTION 2
+      (if the preferred option is infeasible) Send the file generated during SECTION 2 via a method from SECTION 4
 
 1. Import the generated CSV into the MS Access DB attached
    Note: Please leave this file as a MDB. Do not save in the more recent ACCDB format.
@@ -167,14 +163,7 @@ SECTION 3 - Microsoft Access*
 
 --------------------------------------------------------------------
 
-SECTION 4 - Communication with CFTC
-
-Use a new copy of the MS Access MDB file each time.
-   - OR -
-Clear/Delete the tables
-   If deleted, regenerate the tables by clicking the relevant qCreate query.
-   Periodically select "Compact and Repair" from the File menu of MS Access 
-      This reduces the size of the database by completely purging deleted tables orentries
+SECTION 4 - Communication with CFTC (plus miscellaneous)
 
 Send the MS Access MDB file processed in SECTION 3 to Matt Pagel
    e-mail: mpagel at UCDavis dot EDU
@@ -182,3 +171,15 @@ Send the MS Access MDB file processed in SECTION 3 to Matt Pagel
    Google Drive: pagel at CS dot WISC dot EDU for upload to the main database
 You may also send VRL files for archival purposes. In the future, we intend to have file transfer capability built into a webpage.
 
+--------------------------------------------------------------------
+
+SECTION 5 - Miscellaneous
+
+Use a new copy of the MS Access MDB file for each field download period.
+   - OR -
+Clear/Delete the tables between uses
+   If you delete the tables, regenerate them by clicking the relevant qCreate query.
+   Periodically select "Compact and Repair" from the File menu of MS Access 
+      This reduces the size of the database by completely purging deleted tables or entries
+
+Documentation adapted from Arnold Amman's instructions for VUE 1.8/CSV 1.0
