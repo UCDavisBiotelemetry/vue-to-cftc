@@ -9,16 +9,17 @@ In Windows Explorer a.k.a. My Computer
 2. Create a subdirectory (within the above directory) that will house the drift-corrected data (e.g. "drift" or "DC").
 3. In the drift subdirectory, go to the address bar of your windows explorer window* and copy your directory path (Ctrl+C).
 
-* You can navigate to your Windows Explorer address bar by pressing Alt+D on your keyboard; In Windows 8 or later, you can alternatively use Ctrl+L (which is incidentally what Macs and Linux support).
+* You can navigate to your Windows Explorer address bar by pressing Alt+D on your keyboard
+  In Windows 8 or later, you can alternatively use Ctrl+L (which is incidentally what Macs and Linux support).
 
 In VUE
 4. Run VUE and then Create a new VUE DB for drift-corrected data.
    Click on FILE -> New Database...
-   Press "Control-V" to indicate the created subdirectory.
+   Press "Ctrl-V" to indicate the created subdirectory.
    Type a "\" followed by a database name, e.g. "\drift-corrected" and press <Enter> or click "Open".
 5. Change the output location for the individual drift-corrected VRLs.
    Click on FILE -> "Options" button (not in the drop-down menu) -> "Offload" tab -> "Change" button.
-   Press "Control-V" <Enter> to select the subdirectory. (Note: you may have to manually navigate here this time...)
+   Press "Ctrl-V" <Enter> to select the subdirectory. (Note: you may have to manually navigate here this time...)
    While you're here: click the "Export" tab within the options. Please either
        Select "Default format" .
        - OR - 
@@ -27,7 +28,7 @@ In VUE
    Click "OK".
 6. Import the non-drift-corrected VRLs and drift correct.
    Click on FILE -> "Tools" -> VRL File Editor.
-   "Control-V" then press the "Backspace" key on your keyboard to navigate "up" one level to the non-drift-corrected data.
+   "Ctrl-V" then press the "Backspace" key on your keyboard to navigate "up" one level to the non-drift-corrected data.
    Click the top(-left) VRL file, then hold down your shift key, click on the bottom(-right) VRL file - this selects all the VRLs in the directory.
    Hit <Enter> or click "OK".
    The "Edit and Import VRL Files" dialogue should pop up. In this every second line is the file that you're importing.
@@ -41,57 +42,65 @@ In VUE
    Click back to "All Detections" or create an appropriate filtered subset in the left pane.
    Click the export (red arrow pointing right) button -> Export CSV.
    Change "Sensor format" to "Raw sensor values".
-   "Change" the Output File at the top. "Control-V" .
+   "Change" the Output File at the top. "Ctrl-V" .
    "\" followed by an output file name, e.g. filtered-drift-corrected or all-DCd. Make sure there are no spaces in the file name.
    Click "Save" or Press <Enter>.
+   
 --------------------------------------------------------------------
+
 SECTION 2 - PERL/MS-DOS:
 
-1. Perl installation check: prior to first use only
-   To get to a DOS Command Prompt aka "cmd.exe" in the instructions to follow:
+0. DOS background
+   If the instructions to follow call for you to get to a DOS Command Prompt or "cmd.exe"
       Windows XP/Vista: Start->Run Type "cmd.exe"<enter>.
       Windows 7/8/8.1/10: Press the Windows Key, type "cmd", click on the entry.
+   To move your cursor within the Command Prompt window, the mouse won't work as you intend.
+      Instead, use the left and right arrow keys on the keyboard.
+   To paste from the clipboard into the Command Prompt window, you cannot use Ctrl-V
+      Instead right click your mouse and select "Paste"
+   To copy to the clipboard from the Command Prompt, you cannot use Ctrl-C or Ctrl-X. Instead
+      Right click and select "Mark"
+      Highlight the text
+         Note: if you wish to copy multiple lines, this selection marks a rectangle on the screen, so start all the way to the left side of the top line that you want and drag through the very end of the second line.
+      Hit "Enter" to copy the highlighted text to the clipboard
+
+1. Perl installation check: prior to first use only
 
    A) Choose a Perl installation online (e.g. Strawberry Perl, ActiveState Perl, both available as external links from http://www.perl.org/get.html), download and install it according to the relevant instructions.
 
-   B) Recommended: Check and/or set your Windows %Path% environment variable to look for the Perl program directory.
-      Note: you can skip this step if you adjust the EX environmental variable within ConvertVUE2forCFTC.bat as indicated.
-      From cmd.exe type "echo %PATH%"<enter>
-      If the %PATH% output doesn't include a perl bin directory (e.g. D:\Programs\strawberry\perl\bin), you'll need to add it to your Environment variables.
-         If you wish to add capability to run VUE-to-CFTC for just a single login account on your computer
-            From cmd.exe type '"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables' (include "s, but not 's).
-            In the top group (User variables for <username>), Edit "Path" or click "New..." if "Path" not present.
-               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *).
-         If you wish to add capability to run VUE-to-CFTC for all users on your computer
-            From cmd.exe type
-               Windows 7-10: "control sysdm.cpl,,3"<enter>.
-               - OR -
-               Any Windows: "rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl,,3"<enter>.
-            Type a username/password for a user with ADMINISTRATOR level access if prompted.
-            Click "Environment Variables".
-            In the System variables (bottom) section, Edit "Path" or click "New..." if "Path" not present.
-               Variable name will be "Path", Variable value e.g. "D:\Programs\strawberry\perl\bin" (see *).
-      If you have set a %PATH% value as instructed here in optional step B, skip optional step C; Resume with step D.
-* If there are other values present, please seperate existing entries from this entry with a ";"
-     e.g. "D:\Program\strawberry\perl\bin;C:\windows;C:\windows\system32".
+   B) Check and/or set your Windows PATH and PERL5LIB environment variables to look for Perl directories.
+      If you wish to add capability to run VUE-to-CFTC for a single login account on your computer (or do not have administrator-level access on your computer)
+         From cmd.exe type '"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables' (include "s, but not 's).
+         In the top group (User variables for <username>), Edit "Path" or click "New..." if "Path" not present.
+            Variable name will be "PATH", Variable value e.g. "C:\strawberry\perl\bin" (WARNING see *).
+      If you wish to add capability to run VUE-to-CFTC for all users on your computer and have the appropriate administrator access
+         From cmd.exe type
+            Windows 7-10: "control sysdm.cpl,,3"<enter>.
+            - OR -
+            Any Windows: "rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl,,3"<enter>.
+         Type a username/password for a user with ADMINISTRATOR level access if prompted.
+         Click "Environment Variables".
+         In the System variables (bottom) section, Edit "Path" or click "New..." if "Path" not present.
+            Variable name will be "PATH", Variable value e.g. "C:\strawberry\perl\bin" (WARNING see *).
+      Create a new variable named PERL5LIB with value e.g. "C:\strawberry\perl\lib" using the same method as described for PATH
+      Click "OK" to save the changes to the relevant environment variables
 
-   C) Explicitly specify perl paths every time you run perl or a perl script (not recommended, use B instead).
-      Type e.g. "D:\Programs\strawberry\perl\bin\perl.exe" instead of simply "perl" in any of the following commands. You will also need to edit ConvertVUE2forCFTC.bat.
-      File edits required (in a plain-text editor, e.g. Notepad) prior to the first use:
-         Change the 2nd line of the .bat file (the "SET EX=" line) to reflect your Perl executable file's path. 
-   
-   D) This script needs to have a Perl modules Date::Calc, Data::Types and Carp installed on the machine to work as intended using Perl.
+* If there are other values present for this environment variable, please separate existing entries from this entry with a ";".
+  WARNING Erasing existing values may lead to significant issues with other programs installed on your computer!
+     e.g. "C:\strawberry\perl\bin;C:\windows;C:\windows\system32" if the old value was "C:\windows;C:\windows\system32"
+
+   C) This script requires Perl modules Date::Calc, Data::Types and Carp installed on the machine to work as intended.
       To install these and other Perl modules (once Perl itself is installed):
          Run CPAN (requires an active internet connection) by either
             going to your relevant start menu item e.g. \Strawberry Perl (64-bit)\Tools\CPAN Client from your Start Menu->Programs.
             - OR - 
             on "cmd.exe" type "perl -MCPAN -e shell"<Enter>.
          Within CPAN type "install Date::Calc Data::Types Carp"<Enter>.
-            Feel free to tag other modules such as cpanm on to the end of the preceeding.
+            Feel free to tag other modules such as cpanm on to the end of the preceding.
          Type "exit"<enter>; if the window doesn't close, type "exit"<enter> again.
 
 2. Use Perl script
-   Note: after your first use of the program, this is the only Perl step needed and further does not require you to know Perl or Windows Command Prompt syntax.
+   Note: after your first use of the program, this is the only DOS or Perl step needed and further does not require you to know Perl or Windows Command Prompt syntax.
       In windows, please select and then drag the desired .csv file(s en masse) generated by VUE on top of one of the three vue-to-cftc.bats.
          vue-to-cftc-plusMS.bat - will include milliseconds in output for all detections, including those with no specified milliseconds value (0ms).
          vue-to-cftc-noMS.bat - will never include milliseconds, even if present in VUE output. This version is the most compatible with earlier versions of Microsoft Access.
@@ -100,8 +109,11 @@ SECTION 2 - PERL/MS-DOS:
          The .bat files must be in the same directory as the .pl file.
          This script generates a file in the format of "ConvertVUE2forCFTC-output-yyyymmdd_hhmmss.csv" in that directory.
             The time stamp refers to the time the script was run, not the timestamp of the input file(s).
+
 --------------------------------------------------------------------
+
 SECTION 3 - MSAccess*
+
 *instructions written for MSAccess 2010 - slight modification may be needed for other versions. If unable to perform steps 3-4 due to incompatibility, please send the file generated after step 2; you may alternatively use or adapt the Orphans queries to perform manual quality-control.
 
 1. Import the generated CSV into the MSAccess DB attached (note: please leave this file as a .mdb. Do not save in the more recent .accdb format).
@@ -118,7 +130,11 @@ SECTION 3 - MSAccess*
    If it says you have a lot of Orphans, you'll probably want to either look at your Deployment windows or your Detections in detail.
    The final step of this macro allows you to choose to Delete the Orphaned detections from the original table.
       If you cancel the last step, the net effect will be to COPY, rather than MOVE, the affected detections to the DetectOrphans table.
---------------------------------------------------------------------
-Then send the access file to us for upload to the main database.
 
-Use a new copy of the access database each time.  Alternatively, you can clear/delete the tables, which can be regenerated by clicking the relevant qCreate query. If you had a lot of data that you purged, goto File->Compact and Repair, otherwise the database will take up a lot of disk space.
+--------------------------------------------------------------------
+
+SECTION 4 - Communication with CFTC
+
+Send the MSAccess .mdb file processed in SECTION 3 to Matt Pagel via e-mail, Box or Google Drive for upload to the main database. You may also send VRL files for archival purposes. In the future, we intend to have this capability built into a webpage.
+
+Use a new copy of the MSAccess .mdb file each time. Alternatively, you can clear/delete the tables, which can be regenerated by clicking the relevant qCreate query. Periodically select "Compact and Repair" from the File menu of MSAccess to reduce the size of the database if you follow this alternate method.
