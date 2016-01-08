@@ -16,19 +16,27 @@ In VUE
 4. Run VUE and then Create a new VUE DB for drift-corrected data.
    Click on FILE -> New Database...
    Press "Ctrl-V" to indicate the created subdirectory.
-   Type a "\" followed by a database name, e.g. "\drift-corrected" and press <Enter> or click "Open".
+   Type a "\" followed by a database name, e.g. "\drift-corrected"
+   Press <Enter> or click "Open".
 5. Change the output location for the individual drift-corrected VRLs.
    Click on FILE -> "Options" button (not in the drop-down menu) -> "Offload" tab -> "Change" button.
-   Press "Ctrl-V" <Enter> to select the subdirectory. (Note: you may have to manually navigate here this time...)
-   While you're here: click the "Export" tab within the options. Please either
-       Select "Default format" .
-       - OR - 
-       Select "Custom" and Use the Custom Configuration with "Default" column names selected in the dropdown and the checkboxes next to "no trailing commas" and "Millisecond time precision" selected.
-       (Note: the CSV output for VUE 1 is now also supported, but is not recommended).
+   Press "Ctrl-V" <Enter> to select the subdirectory if possible.
+      Note: you may have to manually navigate here, pending a VEMCO update to VUE.)
+   While you're in the VUE Options, adjust the CSV export options as desired
+      Click the "Export" tab within the options. Please either
+         Select "Default format" .
+            - OR - 
+         Select "Custom"
+         Select "Default" column names in the dropdown menu within the Custom Configuration section
+         Check the checkboxes next to "no trailing commas" and "Millisecond time precision
+            - OR -
+         (NOT recommended) Select "Version 1.0 format"
    Click "OK".
 6. Import the non-drift-corrected VRLs and drift correct.
-   Click on FILE -> "Tools" -> VRL File Editor.
-   "Ctrl-V" then press the "Backspace" key on your keyboard to navigate "up" one level to the non-drift-corrected data.
+   Click on FILE -> Tools -> VRL File Editor
+   Click on the address bar (or Alt-D/Ctrl-L)
+   "Ctrl-V" to paste the previously copied directory
+   then press the "Backspace" key on your keyboard to navigate "up" one level to the non-drift-corrected data.
    Click the top(-left) VRL file, then hold down your shift key, click on the bottom(-right) VRL file - this selects all the VRLs in the directory.
    Hit <Enter> or click "OK".
    The "Edit and Import VRL Files" dialogue should pop up. In this every second line is the file that you're importing.
