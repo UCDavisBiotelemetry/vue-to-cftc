@@ -116,7 +116,7 @@ SECTION 2 - PERL/MS-DOS
             - OR - 
             on "cmd.exe" type "perl -MCPAN -e shell"<Enter>.
          Within CPAN type "install Date::Calc Data::Types Carp"<Enter>.
-            Feel free to tag other modules (e.g. cpanm) on to the end of the preceding line.
+            Feel free to tag other modules (e.g. App::cpanminus for cpanm) on to the end of the preceding line.
          Type "exit"<Enter>; if the window doesn't close, type "exit"<Enter> again.
 
 2. Use Perl script
