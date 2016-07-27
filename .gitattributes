@@ -20,3 +20,5 @@ octicons/ export-ignore
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+*.mdb	-text
