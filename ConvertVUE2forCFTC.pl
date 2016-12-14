@@ -65,7 +65,16 @@ while ($line = <STDIN>) {
 	# Format the date one way MS Access and SQL SERVER like it.
 	$MMDDYYYY = join("/", &pad($mon), &pad($day), $year);
 	$HHMM = join(":", &pad($hh), &pad($mm));
-	if ($noMS) { $junk = to_int($ss); $HHMMSS = join(":", $HHMM, &pad($junk)); }
+	if ($noMS) { 
+		$junk = to_int($ss);
+		if ($junk > 59) { 
+			$junk = 59.0;
+			($year, $mon, $day, $hh, $mm, $junk) = Add_Delta_YMDHMS($year, $mon, $day, $hh, $mm, $junk, 0, 0, 0, 0, 0, 1.0);
+			$junk = to_int($junk);
+			$MMDDYYYY = join("/", &pad($mon), &pad($day), $year);
+		}
+		$HHMMSS = join(":", &pad($hh), &pad($mm), &pad($junk));
+	}
 	elsif ($yesMS) { $HHMMSS = join(":", $HHMM, &padf($ss)); }
 	else {
 	  $junk = to_int($ss);
