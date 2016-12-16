@@ -60,7 +60,7 @@ In VUE
    "Change" the Output File at the top. <Ctrl+V> .
    "\" followed by an output file name, e.g. filtered-drift-corrected.csv or all-DCd.csv. Make sure there are no spaces in the file name.
    Click "Save" or Press <Enter>.
-   
+
 --------------------------------------------------------------------
 
 SECTION 2 - PERL/MS-DOS
@@ -157,9 +157,15 @@ SECTION 3 - Microsoft Access
 3. Double-click "mEstablishTableMenu" in the Macros section for the first use on your computer.  Then hit escape or click anywhere.
 
 4. Double-click "mMoveOrphans" in the Macros section.  Follow the prompts.
-   If you have many orphaned detections, you'll probably want to either look at your Deployment windows or your Detections in detail.
-   The final step of this macro allows you to choose to Delete the Orphaned detections from the original table.
-      If you cancel the last step, the net effect will be to COPY, rather than MOVE, the affected detections to the DetectOrphans table.
+   * If you have many orphaned detections, you'll probably want to either look at your Deployment windows or your Detections in detail.
+   * The final step of this macro allows you to choose to Delete the Orphaned detections from the original table.
+      a. Please cancel the last step if you have more than just a few (~10) orphaned detections.
+         * The net effect will be to COPY, rather than MOVE, the affected detections to the DetectOrphans table.
+      b. Address the issues by changing affected receiver IDs (VR2SNs) or re-setting deployment windows as appropriate.
+      c. Delete the DetectOrphans table (assuming you did not okay the delete from the Import_Detections table)
+      d. Run mMoveOrphans again
+      e. Repeat a-d until only a few orphans remain, at this point you can allow mMoveOrphans to delete from the Import_Detections table.
+      
 
 --------------------------------------------------------------------
 
