@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
-# This script will only work properly on Microsoft Windows systems with R installed (and Rscript in your %PATH%)
+# This script will only work properly on Microsoft Windows systems with R installed.
+# For drag-and-drop or command-line runs, RScript.exe needs to be in a directory of your %PATH%
 
 ### Set up default filenames (for Matt's test data set).
 d_f <- "P:/Win8Usr/mpagel/Downloads/SC Lab Vemco files-20181015T224436Z-001/Detections_from_SCLabDB2018_all.csv"
@@ -121,7 +122,7 @@ main <- function() {
   dat<-fread(d_f,fill=TRUE)
   pp("Data file read @ ",timetaken(totTime))
   
-  labls<-c("DT_UTC","Receiver","Tx","TN","TxSN","Data1","Units1","SN","Lat","Lon")
+  labls<-c("DT_UTC","Receiver","Tx","TN","TxSN","Data","Units","SN","Lat","Lon")
   setnames(dat,labls)
   dat[,`:=`(TN=NULL,SN=NULL,Lat=NULL,Lon=NULL,TxSN=NULL)]
   dat[,DT_UTC:=setattr(fastPOSIXct(DT_UTC,tz="GMT"),"class","numeric")]
@@ -135,10 +136,10 @@ main <- function() {
     ,DetectDate:=setattr(((DT_UTC-rx_utc_start)*slope) + pc_utc_start - 28799.5,"class",c("POSIXct","POSIXt"))][
       is.na(DetectDate),`:=`(DetectDate=setattr(DT_UTC - 28799.5,"class",c("POSIXct","POSIXt")),Units2="NoDriftCorrection")]
   fo[,c("TxFreq","TxCs","TagID"):=tstrsplit(Tx,"-",fixed=TRUE)][
-    ,c("RecTy","RecSN"):=tstrsplit(Receiver,"-",fixed=TRUE)][
+    ,c("RecTy","VR2SN"):=tstrsplit(Receiver,"-",fixed=TRUE)][
       ,Codespace:=paste(TxFreq,TxCs,sep="-")][
         ,c("TxFreq","TxCs","RecTy","Receiver","vrlid","startvrl","rxid","filename","rx_utc_start","rx_utc_end","pc_utc_start","pc_utc_end","slope","DT_UTC","Tx"):=NULL]
-  setcolorder(fo,c("TagID","Codespace","DetectDate","RecSN","Data1","Units1","Data2","Units2"))
+  setcolorder(fo,c("TagID","Codespace","DetectDate","VR2SN","Data","Units","Data2","Units2"))
   pp("Timestamps adjusted to PST (UTC-08:00) @ ",timetaken(totTime))
   
   tf<-tempfile()
@@ -153,7 +154,7 @@ main <- function() {
       warn("Error [",e,"] occurred writing output file ",o_f)
       warn("Attempting write to ",cp_f, " instead. If this fails, no further rescue will be attempted.")
       try(fwrite(fo, file = cp_f, quote = FALSE))
-  })
+    })
   pp("Output file written @ ",timetaken(totTime))
 }
 main()
