@@ -63,9 +63,9 @@ In VUE
 
 --------------------------------------------------------------------
 
-SECTION 2 - PERL/MS-DOS
+SECTION 2 - (PERL or R) + MS-DOS
 
-0. DOS background
+1. DOS background
    If the instructions to follow call for you to get to a DOS Command Prompt or "cmd.exe"
       Windows XP/Vista: Start->Run Type "cmd.exe"<Enter>.
       Windows 7/8/8.1/10: Press the <Windows> (icon) Key, type "cmd", click on the entry.
@@ -80,36 +80,43 @@ SECTION 2 - PERL/MS-DOS
                Start all the way to the left side of the top line that you want and drag through the very end of the second line.
       Hit <Enter> to copy the highlighted text to the clipboard
 
-1. Perl installation check: prior to first use only
-
-   A) Choose a Perl installation online from the external links available on http://www.perl.org/get.html
-      Strawberry Perl
-       - OR -
-      ActiveState Perl
-      Download and install your selection according to the relevant instructions.
-
-   B) Check and/or set your Windows PATH and PERL5LIB environment variables to look for Perl directories.
-      To allow you to run VUE-to-CFTC for a single login account on your computer
-         From "cmd.exe" type '"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables' (include "s, but not 's).
-         In the top group (User variables for <username>), Edit "Path" or click "New..." if "Path" not present.
-            Variable name will be "PATH", Variable value e.g. "C:\strawberry\perl\bin" (WARNING see *).
-      If you wish to add capability to run VUE-to-CFTC for all users on your computer and have the appropriate administrator access
-         From cmd.exe type
-            Windows 7-10: "control sysdm.cpl,,3"<Enter>.
-            - OR -
-            Any Windows: "rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl,,3"<Enter>.
-         Type a username/password for a user with ADMINISTRATOR level access if prompted.
-         Click "Environment Variables".
-         In the System variables (bottom) section, Edit "Path" or click "New..." if "Path" not present.
-            Variable name will be "PATH", Variable value e.g. "C:\strawberry\perl\bin" (WARNING see *).
-      Create a new variable named PERL5LIB with value e.g. "C:\strawberry\perl\lib" using the same method as described for PATH
-      Click "OK" to save the changes to the relevant environment variables
+2. Installation. Only one of R or Perl is required in most circumstances.
+   * If you exported in default VUE 2.0 format, you can use either the R or Perl Script. If you exported millisecond data, or used an alternate output format, you will need to use the Perl Script.
+   A) R
+      * Download R from https://cran.r-project.org/ and install as directed by that website.
+   B) Perl
+      * Choose a Perl installation online from the external links available on http://www.perl.org/get.html
+        Strawberry Perl
+        - OR -
+        ActiveState Perl
+        Download and install your selection according to the relevant instructions.
+   
+3. Adjust your Windows PATH environment to allow either R or Perl scripts to run from the command line.
+   A) Decide to use a single user or multi-user install
+      i. Single user: to allow you to run scripts for a single login account on your computer
+         a) From "cmd.exe" or Run prompt paste `"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables` (include "s, but not `s).
+         b) In the top group (User variables for <username>), find the variable named Path. Highlight and "Edit..." if present, "New..." if not present.
+      ii. Multi-user: If you wish to add capability to run VUE-to-CFTC for all users on your computer and have the appropriate administrator access
+         a) From cmd.exe type either
+            * Windows 7-10: "control sysdm.cpl,,3"<Enter>.
+            * Any Windows version: "rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl,,3"<Enter>.
+         b) Type a username/password for a user with ADMINISTRATOR level access if prompted.
+         c) Click the "Environment Variables" tab.
+         d) In the System variables (bottom) section, find the variable named Path. Highlight and "Edit..." if present, "New..." if not present.
+   B) Confirm "variable name" is PATH.
+   C) Scroll to the end of "variable value" and append a semicolon and then the appropriate directory (WARNING see *)
+      * R: R's bin directory (e.g. ;C:\Program Files\R\R-3.5.0\bin)
+      * Perl: Perl's bin directory (e.g "C:\strawberry\perl\bin")
+        Additionally if using Perl, create a variable with name PERL5LIB with value e.g. "C:\strawberry\perl\lib"
+   D) Click "OK" to save the changes to the relevant environment variables
 
 * WARNING: Erasing existing environment variable values may lead to significant issues with other programs installed on your computer!
    If there are other values present for an environment variable, please separate existing entries from this entry with a ";".
    e.g. "C:\strawberry\perl\bin;C:\windows;C:\windows\system32" if the old value was "C:\windows;C:\windows\system32"
 
-   C) This script requires Perl modules Date::Calc, Data::Types and Carp installed on the machine to work as intended.
+4. Dependencies
+   A) R: dependancies should be auto-installed
+   B) Perl: the script requires Perl modules Date::Calc, Data::Types and Carp installed on the machine to work as intended.
       To install these and other Perl modules or libraries to an existing Perl installation
          Run CPAN (requires an active internet connection) by either
             going to your relevant start menu item e.g. \Strawberry Perl (64-bit)\Tools\CPAN Client from your Start Menu->Programs.
@@ -119,8 +126,10 @@ SECTION 2 - PERL/MS-DOS
             Feel free to tag other modules (e.g. App::cpanminus for cpanm) on to the end of the preceding line.
          Type "exit"<Enter>; if the window doesn't close, type "exit"<Enter> again.
 
-2. Use Perl script
-   Note: after your first use of the program, this is the only DOS/Perl step needed and will only require you to drag-and-drop in Windows
+5. Use your preferred script
+   * After first installation and use, this is the only step in SECTION 2 needed for any desired additional runs
+   A) R: instructions available upon request (not yet written)
+   B) Perl:
       Please select and then drag the desired CSV file(s en masse) generated by VUE on top of one of the three vue-to-cftc BAT files:
          vue-to-cftc-plusMS.bat
             Will include milliseconds in output for all detections, including those with no specified milliseconds value (0ms).
@@ -154,12 +163,14 @@ SECTION 3 - Microsoft Access
 
 2. Import/Enter data into the Import_Deployments table as appropriate to cover all times that you had a deployment.
 
-3. Double-click "mEstablishTableMenu" in the Macros section for the first use on your computer.  Then hit escape or click anywhere.
+3. Move beacon and tester tag detections to a seperate table. This includes detections of VR2AR beacons which will be A69-1601-xxxxx where xxxxx = VR2AR_Serial_Number - 485536. At this time there is no automated pre-written query in the .mdb for this step.
 
-4. Double-click "mMoveOrphans" in the Macros section.  Follow the prompts.
+4. Double-click "mEstablishTableMenu" in the Macros section for the first use on your computer.  Then hit escape or click anywhere.
+
+5. Double-click "mMoveOrphans" in the Macros section.  Follow the prompts.
    * If you have many orphaned detections, you'll probably want to either look at your Deployment windows or your Detections in detail.
    * The final step of this macro allows you to choose to Delete the Orphaned detections from the original table.
-      a. Please cancel the last step if you have more than just a few (~10) orphaned detections.
+      a. Please CANCEL the last step if you have more than just a few (~10) orphaned detections.
          * The net effect will be to COPY, rather than MOVE, the affected detections to the DetectOrphans table.
       b. Address the issues by changing affected receiver IDs (VR2SNs) or re-setting deployment windows as appropriate.
       c. Delete the DetectOrphans table (assuming you did not okay the delete from the Import_Detections table)
@@ -169,13 +180,15 @@ SECTION 3 - Microsoft Access
 
 --------------------------------------------------------------------
 
-SECTION 4 - Communication with CFTC (plus miscellaneous)
+SECTION 4 - Communication with CFTC/BARD
 
-Send the MS Access MDB file processed in SECTION 3 to Matt Pagel
+Send the MS Access MDB file processed in SECTION 3 to Matt Pagel for upload to the main database
    e-mail: mpagel at UCDavis dot EDU
    Box: mpagel at UCDavis dot EDU
-   Google Drive: pagel at CS dot WISC dot EDU for upload to the main database
-You may also send VRL files for archival purposes. In the future, we intend to have file transfer capability built into a webpage.
+   Google Drive: pagel at CS dot WISC dot EDU or mpagel at UCDavis dot EDU
+   FTP: Please e-mail so I can create an account and give you connection details. Please be prepared to provide your IP address.
+   
+You are encouraged to also send VRL files for archival purposes. In the future, we intend to have file transfer capability built into the BARD website.
 
 --------------------------------------------------------------------
 
