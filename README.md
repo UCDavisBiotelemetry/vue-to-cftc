@@ -5,7 +5,7 @@ This is achieved by providing the scientist with a series of useful, small progr
 ##### System requirements
 <ul><li>Windows PC<br>
 </li><li>VEMCO VUE<br>
-</li><li>Perl<br>
+</li><li>Perl or R<br>
 </li><li>Microsoft Access (or potentially LibreOffice Base, but I have not recently tested LO Base)
 </li></ul>
  <strong>Please read the <a href='ImportToAccess.txt'>ImportToAccess.txt</a> file for more details</strong><br>
